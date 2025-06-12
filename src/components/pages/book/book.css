@@ -1,0 +1,119 @@
+.bookContainer {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.bookPicContainer {
+  position: relative;
+}
+
+.bookPicContainer img {
+  width: 100%;
+  height: auto;
+}
+
+.bookPicText {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  color: white;
+  font-weight: bold;
+}
+
+.bookFormContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3rem;
+  padding: 2rem;
+  background-color: white;
+  width: 70%;
+}
+
+.formWrapper {
+  flex: 1;
+  padding: 0 10rem;
+}
+
+.bookForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.bookForm input {
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.two-col {
+  display: flex;
+  gap: 1rem;
+}
+
+.two-col > div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.error {
+  color: red;
+  background-color: #ffe5e5;
+  padding: 0.3rem;
+  font-size: 0.85rem;
+  border-radius: 4px;
+}
+
+.sendBtn {
+  margin-top: 1rem;
+  padding: 0.7rem;
+  background-color: #ffbf00;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.sendBtn:hover {
+  background-color: #e6a800;
+}
+
+.bookContactInfo {
+  flex: 1;
+  min-width: 200px;
+}
+
+.bookContactInfo {
+  flex: 1;
+  min-width: 250px;
+}
+
+.bookContactInfo h1 {
+  margin-bottom: 1rem;
+}
+
+.infoItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  margin-bottom: 1.2rem;
+}
+
+.infoItem .icon {
+  font-size: 1.5rem;
+  color: #358ea2;
+  min-width: 24px;
+}
+
+@media only screen and (max-width: 768px) {
+  .bookPicText {
+    font-size: 1.5rem;
+  }
+}
