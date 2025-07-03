@@ -2,139 +2,137 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Navbar from "../../navbar/Navbar";
 import "./service.css";
-
+import DeepCleaningService from "./serviceComponents/deepCleaningService/DeepCleaningService";
+import MoveInCleaningService from "./serviceComponents/MoveInCleaningService/MoveInCleaningService";
+import MoveOutCleaningService from "./serviceComponents/MoveOutCleaningService/MoveOutCleaningService";
+import AirbnbCleaningService from "./serviceComponents/AirbnbCleaningService/AirbnbCleaningService";
+import WindowCleaningService from "./serviceComponents/WindowCleaningService/WindowCleaningService";
+import StandardCleaningService from "./serviceComponents/StandardCleaningService/StandardCleaningService";
+import SpecialEventCleaningService from "./serviceComponents/SpecialEventCleaningService/SpecialEventCleaningService";
+import RecurringCleaningService from "./serviceComponents/RecurringCleaningService/RecurringCleaningService";
+import BathroomCleaningService from "./serviceComponents/RoomBasedCleaningServices/BathroomCleaningService";
+import BedroomCleaningService from "./serviceComponents/RoomBasedCleaningServices/BedroomCleaningService";
+import KitchenCleaningService from "./serviceComponents/RoomBasedCleaningServices/KitchenCleaningService";
+import LivingAreaCleaningService from "./serviceComponents/RoomBasedCleaningServices/LivingAreaCleaningService";
+import ApartmentCleaningService from "./serviceComponents/ExtraCleaningServices/ApartmentCleaningService";
+import HolidayCleaningService from "./serviceComponents/ExtraCleaningServices/HolidayCleaningService";
+import OneTimeCleaningService from "./serviceComponents/ExtraCleaningServices/OneTimeCleaningService";
+import SameDayCleaningService from "./serviceComponents/ExtraCleaningServices/SameDayCleaningService";
+import SmallBusinessCleaningService from "./serviceComponents/ExtraCleaningServices/SmallBusinessCleaningService";
+import SpringOrFallCleaningService from "./serviceComponents/ExtraCleaningServices/SpringOrFallCleaningService";
 const services = [
   {
     id: 0,
-    header: "Deep Cleaning",
-    description:
-      "Our deep cleaning service targets hidden dirt, grime, and buildup in your home or office, ensuring a truly fresh environment.",
+    header: "Deep Cleaning Services",
+    description: <DeepCleaningService />,
     src: "/assets/1.jpg",
   },
   {
     id: 1,
-    header: "Hand Sanitization Service",
-    description:
-      "We offer professional hand sanitization services for shared spaces, ideal for businesses and high-traffic areas.",
+    header: "One Time Cleaning",
+    description: <OneTimeCleaningService />,
     src: "/assets/2.jpg",
   },
   {
     id: 2,
     header: "Spring or Fall Cleaning",
-    description:
-      "Prepare your space for the season with our thorough spring or fall cleaning, focusing on dust, windows, and forgotten areas.",
+    description: <SpringOrFallCleaningService />,
     src: "/assets/3.jpg",
   },
   {
     id: 3,
     header: "Same Day Cleaning",
-    description:
-      "Need emergency cleaning? Our same-day service ensures your home or business is spotless in just a few hours.",
+    description: <SameDayCleaningService />,
     src: "/assets/4.jpg",
   },
   {
     id: 4,
     header: "Move-Out Cleaning",
-    description:
-      "Moving out? Leave your space spotless for the next tenant with our detailed move-out cleaning service.",
+    description: <MoveOutCleaningService />,
     src: "/assets/5.jpg",
   },
   {
     id: 5,
     header: "Recurring Cleaning",
-    description:
-      "Enjoy peace of mind with our scheduled recurring cleaning services — weekly, bi-weekly, or monthly.",
+    description: <RecurringCleaningService />,
     src: "/assets/6.jpg",
   },
   {
     id: 6,
     header: "Small Business Cleaning",
-    description:
-      "We specialize in affordable and reliable cleaning solutions tailored to the needs of small businesses.",
+    description: <SmallBusinessCleaningService />,
     src: "/assets/7.jpg",
   },
   {
     id: 7,
     header: "Holiday Cleaning",
-    description:
-      "Hosting guests? Our holiday cleaning service ensures your home shines during special occasions and family gatherings.",
+    description: <HolidayCleaningService />,
     src: "/assets/8.jpg",
   },
   {
     id: 8,
     header: "Apartment Cleaning",
-    description:
-      "Perfect for city living, our apartment cleaning service covers every corner, leaving your space spotless.",
+    description: <ApartmentCleaningService />,
     src: "/assets/9.jpg",
   },
   {
     id: 9,
     header: "Move-In Cleaning",
-    description:
-      "Start fresh in your new space with our move-in cleaning, eliminating dust and residue from previous occupants.",
+    description: <MoveInCleaningService />,
     src: "/assets/10.jpg",
   },
   {
     id: 10,
     header: "Window Cleaning Services",
-    description:
-      "Crystal-clear windows inside and out — we clean residential and commercial windows with streak-free results.",
+    description: <WindowCleaningService />,
     src: "/assets/11.jpg",
   },
   {
     id: 11,
-    header: "Carpet Cleaning Services",
-    description:
-      "Remove stains, dust, and allergens from your carpets with our deep extraction cleaning technology.",
+    header: "Living Area Cleaning Services",
+    description: <LivingAreaCleaningService />,
     src: "/assets/12.jpg",
   },
   {
     id: 12,
-    header: "Special Cleaning Services",
-    description:
-      "From post-construction cleanup to event aftermath, our special services meet unique cleaning needs.",
+    header: "Special Event Cleaning Services",
+    description: <SpecialEventCleaningService />,
     src: "/assets/13.jpg",
   },
   {
     id: 13,
-    header: "Housekeeping Services",
-    description:
-      "Regular housekeeping made easy — we handle dusting, laundry, tidying, and more so you can relax.",
+    header: "Kitchen Cleaning Services",
+    description: <KitchenCleaningService />,
     src: "/assets/14.jpg",
   },
   {
     id: 14,
-    header: "Post-Renovation Cleaning",
-    description:
-      "Remove construction dust and debris with our expert post-renovation cleanup service.",
+    header: "Bedroom Cleaning Services",
+    description: <BedroomCleaningService />,
     src: "/assets/15.jpg",
   },
   {
     id: 15,
-    header: "Bathroom Cleaning Services",
-    description:
-      "Disinfected and sparkling — our bathroom cleaning removes grime, limescale, and odors efficiently.",
+    header: "Airbnb Cleaning Services",
+    description: <AirbnbCleaningService />,
     src: "/assets/16.jpg",
   },
   {
     id: 16,
-    header: "Green Cleaning Services",
-    description:
-      "Eco-friendly cleaning using non-toxic, biodegradable products safe for families and pets.",
+    header: "Bathroom Cleaning Services",
+    description: <BathroomCleaningService />,
     src: "/assets/17.jpg",
   },
   {
     id: 17,
-    header: "Advanced Vacuuming Service",
-    description:
-      "Our vacuum cleaner pros target dirt, allergens, and fine particles in carpets and upholstery.",
+    header: "Standart Cleaning Services",
+    description: <StandardCleaningService />,
     src: "/assets/18.jpg",
   },
   {
     id: 18,
-    header: "Appliance Cleaning Services",
-    description:
-      "We deep-clean your kitchen appliances — ovens, fridges, microwaves — restoring them to like-new condition.",
+    header: "Bedroom Cleaning Services",
+    description: <BedroomCleaningService />,
     src: "/assets/19.jpg",
   },
 ];
@@ -163,11 +161,13 @@ const Service = () => {
 
   return (
     <div className="servicePageContainer">
-      <Navbar />
+      <div className="serviceNavbarWrapper">
+        <Navbar />
+      </div>
       <div className="servicePageContentWrapper">
         <div className="serviceExplanation">
           <h1>{service.header}</h1>
-          <p>{service.description}</p>
+          {service.description}
         </div>
 
         {!isMobile && (

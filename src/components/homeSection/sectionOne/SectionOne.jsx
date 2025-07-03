@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import { Instagram, Yelp } from "../../icons/icons";
 import "./sectionOne.css";
+import { useNavigate } from "react-router-dom";
 
 const SectionOne = () => {
   const [isMobile, setIsMobile] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleResize = () => {
@@ -22,14 +25,16 @@ const SectionOne = () => {
 
   return (
     <div className="homePicture">
-      <img src="/main.png" alt="Main" className="backgroundImage" />
+      <img src="/assets/2.jpg" alt="Main" className="backgroundImage" />
       <div className="overlayLayer"></div>
       <div className="overlayContent">
-        <h1>TOP-RATED CLEANİNG SERVİCE</h1>
-        <h1>ELİTE FRESH UP CLEANİNG</h1>
+        <h1>DETAİLED - RELİABLE - PROFESSİONAL</h1>
+        <h1>ELİTE FRESHUP CLEANİNG SERVİCES</h1>
         <div className="overlayCom">
-          <button className="homeBook">Get a Quote</button>
-          <button className="phone">+1 628 295-5859</button>
+          <button className="homeBook" onClick={() => navigate("/book")}>
+            Get a Quote
+          </button>
+          <button className="phone">657 263 7999</button>
         </div>
       </div>
 
@@ -51,7 +56,11 @@ const SectionOne = () => {
           <p>Yelp</p>
           <div
             className="halfOverlappingContainerRightYelp"
-            onClick={() => console.log("Yelp Clicked")}
+            onClick={() =>
+              window.open(
+                "https://www.yelp.com/biz/elite-freshup-cleaning-services-los-angeles?uid=goF9bAjLJJ-0h8Jhqm2JHg&utm_source=ishare"
+              )
+            }
           >
             <Yelp className="halfOverLappingIcon halfOverLappingIconYelp" />
           </div>

@@ -22,6 +22,11 @@
   border-radius: 8px;
 }
 
+.galleryFooterWrapper {
+  width: 100vw;
+  border: red 1px solid;
+}
+
 @media (max-width: 768px) {
   .galleryWrapper {
     grid-template-columns: repeat(2, 1fr); /* 2 sütun yan yana */

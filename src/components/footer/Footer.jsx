@@ -6,6 +6,7 @@ import {
   Facebook,
   SomeInstagram,
   TwitterXFill,
+  Yelp,
 } from "../icons/icons";
 import "./footer.css";
 
@@ -21,7 +22,9 @@ const Footer = () => {
 
   return (
     <div className="footerContainer">
-      <div className="footeLogo">LOGO</div>
+      <div className="footeLogo">
+        <img src="/logo.jpg" />
+      </div>
       <div className="footerLinks">
         <div className="footerLinksWrapper">
           {footerLinks.map((link, i) => {
@@ -47,20 +50,27 @@ const Footer = () => {
         <div className="footerContactUs">
           <TwotonePhoneInTalk />
 
-          <p>123123123 </p>
+          <p>855 551 5445</p>
         </div>
         <div className="footerContactUs">
           <BaselineAlternateEmail />
 
-          <p>asdasdasd@email</p>
+          <p>elitefreshup@gmail.com</p>
         </div>
         <div className="footerContactUs">
           <TravelMapLocationPinNavigationMapMapsPinGpsLocation />
 
-          <p>adressadressadress</p>
+          <p>California</p>
         </div>
         <div className="footerContactUs links">
-          <Facebook /> <SomeInstagram /> <TwitterXFill />
+          <SomeInstagram />{" "}
+          <Yelp
+            onClick={() =>
+              window.open(
+                "https://www.yelp.com/biz/elite-freshup-cleaning-services-los-angeles?uid=goF9bAjLJJ-0h8Jhqm2JHg&utm_source=ishare"
+              )
+            }
+          />
         </div>
       </div>
     </div>

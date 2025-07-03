@@ -30,7 +30,7 @@ const Services = () => {
     },
     {
       src: <BaselineCleanHands className="serviceIcon" />,
-      text: "asd",
+      text: "One Time Cleaning",
       descpriction: "qweqwe",
     },
     {
@@ -82,42 +82,42 @@ const Services = () => {
     },
     {
       src: <CleaningBucketOutlineTwo className="serviceIcon" />,
-      text: "Carpet Cleaning Services",
+      text: "Living Area Cleaning Services",
       descpriction: "qweqwe",
     },
     {
       src: <Clean className="serviceIcon" />,
-      text: "Special Cleaning Services",
+      text: "Special Event Cleaning Services",
       descpriction: "qweqwe",
     },
     {
       src: <PersonalHygieneCleanBottleShield className="serviceIcon" />,
-      text: "Housekeeping Services",
+      text: "Kitchen Cleaning Services",
       descpriction: "qweqwe",
     },
     {
       src: <CleaningBucket className="serviceIcon" />,
-      text: "Post-Renovation Cleaning Services",
+      text: "Bedroom Cleaning Services",
       descpriction: "qweqwe",
     },
     {
       src: <CleaningTwo className="serviceIcon" />,
-      text: "Bathroom Cleaning Services",
+      text: "Airbnb Cleaning Services",
       descpriction: "qweqwe",
     },
     {
       src: <SilverwareClean className="serviceIcon" />,
-      text: "Green Cleaning Services",
+      text: "Bathroom Cleaning Services",
       descpriction: "qweqwe",
     },
     {
       src: <VacuumCleanerThree className="serviceIcon" />,
-      text: "Green Cleaning Services",
+      text: "Standart Cleaning Services",
       descpriction: "qweqwe",
     },
     {
       src: <BaselineCleanHands className="serviceIcon" />,
-      text: "Appliance Cleaning Services",
+      text: "Bedroom Cleaning Services",
       descpriction: "qweqwe",
     },
   ];
@@ -126,7 +126,7 @@ const Services = () => {
 
   return (
     <div className="servicesContainer">
-      <h1>SERVİCES WE PROVİDE</h1>
+      <h1>OUR SERVİCES</h1>
       <div className="servicesWrapper">
         {services.map((services, i) => {
           return (

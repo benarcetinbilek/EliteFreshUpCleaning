@@ -10,7 +10,21 @@
 }
 
 .footeLogo {
-  flex: 1;
+  max-height: 150px;
+  max-width: 200px;
+  margin-left: 200px;
+  display: flex;
+  /* align-items: stretch; */
+  /* border: 4px red solid; */
+}
+
+.footeLogo img {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  border-radius: 10px;
+  border: 4px white solid;
 }
 .footerText {
   font-size: 14px;
@@ -82,4 +96,24 @@
 
 .footerPrivacyText p {
   margin: 0;
+}
+
+@media (max-width: 768px) {
+  .footeLogo {
+    max-height: 100px;
+    max-width: 100px;
+    margin-left: 0px;
+    display: flex;
+    align-items: stretch;
+    /* border: 4px white solid; */
+    border-radius: 10px;
+  }
+
+  .footeLogo img {
+    height: 100%;
+    width: auto;
+    object-fit: contain; /* Oran bozulmasın */
+    display: block;
+    border-radius: 10px;
+  }
 }

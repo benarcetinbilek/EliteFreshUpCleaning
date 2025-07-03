@@ -2,26 +2,15 @@ import "./cleaningAreas.css";
 
 const CleaningAreas = () => {
   const areas = [
-    { location: "san francisco" },
-    { location: "san francisco" },
-    { location: "san francisco" },
-    { location: "san francisco" },
-    { location: "san francisco" },
-    { location: "san francisco" },
-    { location: "san francisco" },
-    { location: "san francisco" },
-    { location: "san francisco" },
-    { location: "san francisco" },
-    { location: "san francisco" },
-    { location: "san francisco" },
-    { location: "san francisco" },
-    { location: "san francisco" },
-    { location: "san francisco" },
+    { location: "Orange County" },
+    { location: "Ventura county" },
+    { location: "South Bay" },
+    { location: "Los Angeles County" },
   ];
 
   return (
     <div className="cleaningAreas">
-      <h1>AREAS VE SERVİCE</h1>
+      <h1>AREAS WE PROUDLY SERVİCE</h1>
       <p>Elite Freshup cleaning is centrally located in San francisco</p>
 
       <div className="cleaningAreasWrapper">

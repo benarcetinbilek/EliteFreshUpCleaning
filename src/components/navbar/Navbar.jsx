@@ -25,7 +25,7 @@ const Navbar = () => {
           navigate("/");
         }}
       >
-        Logo
+        <img src="/navbarLogo.jpg" />
       </div>
 
       <div

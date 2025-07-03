@@ -13,7 +13,14 @@
 
 .navbarLogo {
   font-weight: bold;
-  font-size: 24px;
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-left: 20px;
+}
+
+.navbarLogo img {
+  height: 100%;
 }
 
 .navbarLinks {
@@ -85,6 +92,10 @@
   .hamburger {
     display: flex;
   }
+
+  /* .navbarLogo {
+    max-width: 40%;
+  } */
 
   @keyframes slideDown {
     from {
