@@ -52,6 +52,12 @@
   border-radius: 6px;
 }
 
+.bookSelect {
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
 .two-col {
   display: flex;
   gap: 1rem;
@@ -91,7 +97,7 @@
   min-width: 200px;
   /* border: 1px solid #ccc; */
   position: relative;
-  border: 2px red solid;
+  /* border: 2px red solid; */
 }
 
 /* .bookContactInfo {
@@ -120,7 +126,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  border: 2px solid green;
+  /* border: 2px solid green; */
 }
 
 .priceWrapper {
@@ -135,13 +141,13 @@
 
 .extrasGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
 
   gap: 30px;
 }
 
 .extraItem {
-  width: 150px;
+  width: 120px;
   padding: 10px;
   border: 1px solid #ccc;
   text-align: center;
@@ -209,7 +215,10 @@
   border-color: #222 transparent transparent transparent;
 }
 
-/* Hover olduğunda göster */
+.extraItem {
+  position: relative;
+}
+
 .extraItem:hover .tooltipBox {
   display: block;
 }

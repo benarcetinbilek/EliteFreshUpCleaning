@@ -1,6 +1,6 @@
 import "./book.css";
 import Navbar from "../../navbar/Navbar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Footer from "../../footer/Footer";
 import {
   BaselineAlternateEmail,
@@ -8,6 +8,7 @@ import {
   SomeInstagram,
   TwotonePhoneInTalk,
 } from "../../icons/icons";
+import emailjs from "@emailjs/browser";
 
 const Book = () => {
   const [form, setForm] = useState({
@@ -16,146 +17,189 @@ const Book = () => {
     email: "",
     address: "",
     date: "",
+    // service: "",
+    property: "",
+    sqft: "",
+    often: "",
   });
+
+  const [totalPrice, setTotalPrice] = useState(0);
 
   const [extras, setExtras] = useState([
     {
       id: 1,
       title: "Deep Clean",
       description: "Recommended if last cleaning was 1-2 months ago",
-      longDescription: "A thorough cleaning service for homes cleaned recently",
+      longDescription:
+        "Adds 80$ A thorough cleaning service for homes cleaned recently",
       ifCount: false,
       selected: false,
       src: "/extraIcons/deep-cleaning.svg",
+      isImgClose: false,
+      price: 80,
     },
     {
       id: 2,
       title: "Double Deep Clean",
       description: "Recommended if last cleaning was 3+ months ago",
       longDescription:
-        "Ideal for homes that haven't been cleaned in a long time",
+        "Adds 160$ Ideal for homes that haven't been cleaned in a long time",
       ifCount: false,
       selected: false,
       src: "/extraIcons/double-deep-cleaning.svg",
+      isImgClose: false,
+      price: 160,
     },
     {
       id: 3,
       title: "Post-Construction",
       description: "For homes after renovation",
-      longDescription: "Removes dust, paint residue, and post-build debris",
+      longDescription:
+        "Adds 240$ Removes dust, paint residue, and post-build debris",
       ifCount: false,
       selected: false,
       src: "/extraIcons/post-constraction.svg",
+      isImgClose: false,
+      price: 240,
     },
     {
       id: 4,
       title: "Inside the Fridge",
       description: "Interior of the fridge will be cleaned",
-      longDescription: "Deep cleaning of fridge shelves and drawers",
+      longDescription: "Adds 40$ Deep cleaning of fridge shelves and drawers",
       ifCount: false,
       selected: false,
       src: "/extraIcons/inside-the-fridge.svg",
+      isImgClose: false,
+      price: 40,
     },
     {
       id: 5,
       title: "Inside the Oven",
       description: "Interior of the oven will be cleaned",
-      longDescription: "Degreasing and deep cleaning of oven surfaces",
+      longDescription: "Adds 30$ Degreasing and deep cleaning of oven surfaces",
       ifCount: false,
       selected: false,
       src: "/extraIcons/inside-the-oven.svg",
+      isImgClose: false,
+      price: 30,
     },
     {
       id: 6,
       title: "Hand Wipe Baseboards",
       description: "Detailed hand cleaning of baseboards",
-      longDescription: "Includes scrubbing and dirt removal from trim areas",
+      longDescription:
+        "Adds 35$ Includes scrubbing and dirt removal from trim areas",
       ifCount: false,
       selected: false,
       src: "/extraIcons/hand-wipe-baseboards.svg",
+      isImgClose: false,
+      price: 35,
     },
     {
       id: 7,
       title: "Dish Washing",
       description: "Per sinkful",
-      longDescription: "Number of sinkfuls must be specified",
+      longDescription: "Adds 20$ Number of sinkfuls must be specified",
       ifCount: true,
       selected: false,
       count: 1,
       src: "/extraIcons/dish-washing.svg",
+      isImgClose: true,
+      price: 20,
     },
     {
       id: 8,
       title: "Inside Kitchen Cabinets",
       description: "Interior of cabinets will be cleaned",
-      longDescription: "Crumbs, spills, and stains will be wiped out",
+      longDescription: "Adds 80$ Crumbs, spills, and stains will be wiped out",
       ifCount: false,
       selected: false,
       src: "/extraIcons/inside-kitchen-cabinets.svg",
+      isImgClose: false,
+      price: 80,
     },
     {
       id: 9,
       title: "Deep Cleaning of Blinds",
       description: "Detailed blind cleaning",
-      longDescription: "Hand-wiped or vacuumed depending on material",
+      longDescription: "Adds 60$ Hand-wiped or vacuumed depending on material",
       ifCount: false,
       selected: false,
       src: "/extraIcons/deep-cleaning-of-blinds.svg",
+      isImgClose: false,
+      price: 60,
     },
     {
       id: 10,
       title: "interior window",
       description: "Interior window glass and frames",
-      longDescription: "Cleaning of smudges, dirt, and debris from inside",
+      longDescription:
+        "Adds 60$ Cleaning of smudges, dirt, and debris from inside",
       ifCount: false,
       selected: false,
       src: "/extraIcons/interior-window.svg",
+      isImgClose: false,
+      price: 60,
     },
     {
       id: 11,
       title: "Exterior Window Cleaning",
       description: "Outside window cleaning",
-      longDescription: "Reachable exterior windows will be cleaned",
+      longDescription: "Adds 15$ Reachable exterior windows will be cleaned",
       ifCount: false,
       selected: false,
       src: "/extraIcons/exterior-window-cleaning.svg",
+      isImgClose: false,
+      price: 15,
     },
     {
       id: 12,
       title: "Sweep Balcony, Patio, or Garage",
       description: "Outdoor floor sweep-up",
-      longDescription: "Removes dust, leaves, and debris from outdoor areas",
+      longDescription:
+        "Adds 20$ Removes dust, leaves, and debris from outdoor areas",
       ifCount: false,
       selected: false,
       src: "/extraIcons/sweep-balcony.svg",
+      isImgClose: false,
+      price: 20,
     },
     {
       id: 13,
       title: "Wipe Ceiling Fans",
       description: "Cleaning of fan blades and motor housing",
-      longDescription: "Dust will be wiped from all reachable ceiling fans",
+      longDescription:
+        "Adds 10$ Dust will be wiped from all reachable ceiling fans",
       ifCount: false,
       selected: false,
       src: "/extraIcons/wipe-ceiling-fans.svg",
+      isImgClose: false,
+      price: 10,
     },
     {
       id: 14,
       title: "Wash, Dry, and Fold Laundry",
       description: "Laundry service included",
-      longDescription: "1 load of laundry washed, dried, and folded",
+      longDescription: "Adds 40$ 1 load of laundry washed, dried, and folded",
       ifCount: true,
       selected: false,
       count: 1,
       src: "/extraIcons/laundry.svg",
+      isImgClose: true,
+      price: 40,
     },
     {
       id: 15,
       title: "Pet Hair Removal",
       description: "Remove pet hair from floors and surfaces",
-      longDescription: "Detailed vacuuming and lint removal from furniture",
+      longDescription:
+        "Adds 40$ Detailed vacuuming and lint removal from furniture",
       ifCount: false,
       selected: false,
       src: "/extraIcons/pet.svg",
+      isImgClose: false,
+      price: 40,
     },
     {
       id: 16,
@@ -165,6 +209,8 @@ const Book = () => {
       ifCount: false,
       selected: false,
       src: "/extraIcons/eco-friendly.svg",
+      isImgClose: false,
+      price: 0,
     },
   ]);
 
@@ -212,14 +258,138 @@ const Book = () => {
       newErrors.address =
         "This field is required. Please enter the street address.";
     if (!form.date) newErrors.date = "This field is required.";
+    // if (!form.service)
+    //   newErrors.service = "This field is required. Please select a service.";
+    if (!form.property)
+      newErrors.property =
+        "This field is required. Please select a property type.";
+    if (!form.sqft)
+      newErrors.sqft =
+        "This field is required. Please enter the square footage.";
 
     setErrors(newErrors);
 
+    const selectedExtras = extras
+      .filter((extra) => extra.selected)
+      .map((extra) => {
+        const base = `${extra.title} - $${extra.price}`;
+        if (extra.ifCount) {
+          return `${base} x ${extra.count} = $${extra.price * extra.count}`;
+        }
+        return base;
+      })
+      .join(", ");
+
+    const templateParams = {
+      name: form.name,
+      // reply_to: form.email,
+      phone: form.phone,
+      email: form.email,
+      address: form.address,
+      date: form.date,
+      // service: form.service,
+      property: form.property,
+      sqft: form.sqft,
+      often: form.often,
+      price: `$${totalPrice}`,
+      extras:
+        extras
+          .filter((extra) => extra.selected)
+          .map((extra) => {
+            const base = `${extra.title} - $${extra.price}`;
+            if (extra.ifCount) {
+              return `${base} x ${extra.count} = $${extra.price * extra.count}`;
+            }
+            return base;
+          })
+          .join(", ") || "None",
+    };
+
+    // console.log("Submittedbefore!", templateParams);
+    // console.log("errrrors", newErrors);
     if (Object.keys(newErrors).length === 0) {
-      console.log("Submitted!", form);
-      // You can reset or send data here
+      // console.log("Submitted!", templateParams);
+      emailjs
+        .send(
+          "service_0tx5cke",
+          "template_6mrpq8s",
+          templateParams,
+          "rwR-niic-rxN5XhFi"
+        )
+        .then((result) => {
+          console.log("✅ Email sent:", result);
+          alert("Thank you! Your booking was submitted.");
+          // Formu temizle
+          setForm({
+            name: "",
+            phone: "",
+            email: "",
+            address: "",
+            date: "",
+            service: "",
+            property: "",
+            sqft: "",
+            often: "",
+          });
+        })
+        .catch((error) => {
+          console.error("❌ Failed to send email:", error);
+          alert("Oops! Something went wrong. Please try again.");
+        });
     }
   };
+
+  useEffect(() => {
+    let price = 0;
+
+    // 1. Property base price
+    const propertyMap = {
+      apartment: 150,
+      "1 bed 1 bath": 200,
+      "2 beds 1 bath": 250,
+      "2 beds 2 bath": 300,
+      "3 beds 2 bath": 350,
+      "3 beds 3 bath": 400,
+      "4 beds 2 bath": 450,
+    };
+
+    if (form.property && propertyMap[form.property]) {
+      price += propertyMap[form.property];
+    }
+
+    // 2. Square Footage
+    const sqft = parseInt(form.sqft, 10);
+    if (!isNaN(sqft) && sqft > 50) {
+      const extraSqft = sqft - 50;
+      const stepsOf100 = Math.ceil(extraSqft / 100);
+      price += stepsOf100 * 50;
+    }
+
+    // 3. Extras
+    const selectedExtras = extras.filter((extra) => extra.selected);
+    const extrasPrice = selectedExtras.reduce((acc, extra) => {
+      return acc + (extra.ifCount ? extra.count * extra.price : extra.price);
+    }, 0);
+    price += extrasPrice;
+
+    // 4. Frequency Discount
+    switch (form.often) {
+      case "Once every week":
+        price *= 0.85; // 15% indirim
+        break;
+      case "Once every 2 weeks":
+        price *= 0.9;
+        break;
+      case "Once every 3 weeks":
+      case "Once every 4 weeks":
+        price *= 0.95;
+        break;
+      default:
+        break; // one time ise değişiklik yok
+    }
+
+    setTotalPrice(Math.round(price));
+  }, [form, extras]);
 
   return (
     <div className="bookContainer">
@@ -276,6 +446,70 @@ const Book = () => {
             />
             {errors.address && <span className="error">{errors.address}</span>}
 
+            {/* <label>Type of service *</label>
+            <select
+              name="service"
+              value={form.service}
+              onChange={handleChange}
+              className="bookSelect"
+            >
+              <option value="">-- Select Service --</option>
+              <option value="residential">Residential Cleaning</option>
+              <option value="commercial">Commercial Cleaning</option>
+            </select>
+            {errors.service && <span className="error">{errors.service}</span>} */}
+
+            <div className="two-col">
+              <div>
+                <label>Describe your property</label>
+                <select
+                  name="property"
+                  value={form.property}
+                  onChange={handleChange}
+                  className="bookSelect"
+                >
+                  <option value="">-- Select Property Type --</option>
+                  <option value="apartment">Studio</option>
+                  <option value="1 bed 1 bath">1 bed 1 bath</option>
+                  <option value="2 beds 1 bath">2 beds 1 bath</option>
+                  <option value="2 beds 2 bath">2 beds 2 bath</option>
+                  <option value="3 beds 2 bath">3 beds 2 bath</option>
+                  <option value="3 beds 3 bath">3 beds 3 bath</option>
+                  <option value="4 beds 2 bath">4 beds 2 bath</option>
+                </select>
+                {errors.property && (
+                  <span className="error">{errors.property}</span>
+                )}
+              </div>
+              <div>
+                <label>Sq FT</label>
+                <input
+                  type="number"
+                  name="sqft"
+                  value={form.sqft}
+                  onChange={handleChange}
+                />
+                {errors.sqft && <span className="error">{errors.sqft}</span>}
+              </div>
+            </div>
+
+            <label>How often?</label>
+            <select
+              name="often"
+              value={form.often}
+              onChange={handleChange}
+              className="bookSelect"
+            >
+              <option value="">-- Select Time --</option>
+              <option value="one Time">One time </option>
+              <option value="Once every week">Once every week</option>
+              <option value="Once every 2 weeks">Once every 2 weeks</option>
+              <option value="Once every 3 weeks">Once every 3 weeks</option>
+              <option value="Once every 4 weeks">Once every 4 weeks</option>
+            </select>
+
+            {errors.often && <span className="error">{errors.often}</span>}
+
             <label>Choose a Cleaning Date *</label>
             <input
               type="date"
@@ -292,14 +526,7 @@ const Book = () => {
                   className={`extraItem ${extra.selected ? "selected" : ""}`}
                   onClick={() => toggleExtra(extra.id)}
                 >
-                  {extra.ifCount && !extra.selected && (
-                    <img
-                      src={extra.src}
-                      alt={extra.title}
-                      className="extraIcon"
-                    />
-                  )}
-                  {extra.selected && extra.ifCount && (
+                  {extra.ifCount && extra.selected && extra.isImgClose ? (
                     <input
                       type="number"
                       value={extra.count}
@@ -309,6 +536,12 @@ const Book = () => {
                         updateCount(extra.id, parseInt(e.target.value) || 1)
                       }
                       className="countInput"
+                    />
+                  ) : (
+                    <img
+                      src={extra.src}
+                      alt={extra.title}
+                      className="extraIcon"
                     />
                   )}
 
@@ -368,7 +601,7 @@ const Book = () => {
             </div>
           </div>
           <div className="priceContainer">
-            <div className="priceWrapper">Total: 239.99$</div>
+            <div className="priceWrapper">Total: {totalPrice}$</div>
           </div>
         </div>
       </div>
@@ -378,3 +611,5 @@ const Book = () => {
 };
 
 export default Book;
+
+//porperty selection change and dynamic price calculation
