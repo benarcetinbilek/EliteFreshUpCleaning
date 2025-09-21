@@ -28,13 +28,13 @@ const SectionOne = () => {
       <img src="/assets/2.jpg" alt="Main" className="backgroundImage" />
       <div className="overlayLayer"></div>
       <div className="overlayContent">
-        <h1>DETAİLED - RELİABLE - PROFESSİONAL</h1>
-        <h1>ELİTE FRESHUP CLEANİNG SERVİCES</h1>
+        <h1>DETAILED - RELIABLE - PROFESSIONAL</h1>
+        <h1>ELITE FRESHUP CLEANING SERVICES</h1>
         <div className="overlayCom">
           <button className="homeBook" onClick={() => navigate("/book")}>
             Get a Quote
           </button>
-          <button className="phone">657 263 7999</button>
+          <button className="phone">855 551 5445</button>
         </div>
       </div>
 
