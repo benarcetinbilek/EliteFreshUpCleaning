@@ -11,7 +11,7 @@ const CleaningAreas = () => {
   return (
     <div className="cleaningAreas">
       <h1>AREAS WE PROUDLY SERVİCE</h1>
-      <p>Elite Freshup cleaning is centrally located in San francisco</p>
+      {/* <p>Elite Freshup cleaning is centrally located in San francisco</p> */}
 
       <div className="cleaningAreasWrapper">
         {areas.map((areas, i) => {
