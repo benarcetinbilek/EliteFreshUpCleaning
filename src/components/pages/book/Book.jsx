@@ -36,7 +36,7 @@ const Book = () => {
       selected: false,
       src: "/extraIcons/deep-cleaning.svg",
       isImgClose: false,
-      price: 80,
+      price: 105,
     },
     {
       id: 2,
@@ -344,13 +344,12 @@ const Book = () => {
 
     // 1. Property base price
     const propertyMap = {
-      apartment: 150,
-      "1 bed 1 bath": 200,
-      "2 beds 1 bath": 250,
-      "2 beds 2 bath": 300,
-      "3 beds 2 bath": 350,
-      "3 beds 3 bath": 400,
-      "4 beds 2 bath": 450,
+      "1 bed 1 bath": 150,
+      "2 beds 1 bath": 175,
+      "2 beds 2 bath": 200,
+      "3 beds 2 bath": 225,
+      "3 beds 3 bath": 250,
+      "4 beds 2 bath": 250,
     };
 
     if (form.property && propertyMap[form.property]) {
@@ -375,14 +374,17 @@ const Book = () => {
     // 4. Frequency Discount
     switch (form.often) {
       case "Once every week":
-        price *= 0.85; // 15% indirim
+        price *= 1; // 15% indirim
         break;
       case "Once every 2 weeks":
-        price *= 0.9;
+        price *= 1;
         break;
       case "Once every 3 weeks":
       case "Once every 4 weeks":
-        price *= 0.95;
+        price *= 1;
+        break;
+      case "one Time":
+        price += 25;
         break;
       default:
         break; // one time ise değişiklik yok
@@ -469,7 +471,6 @@ const Book = () => {
                   className="bookSelect"
                 >
                   <option value="">-- Select Property Type --</option>
-                  <option value="apartment">Studio</option>
                   <option value="1 bed 1 bath">1 bed 1 bath</option>
                   <option value="2 beds 1 bath">2 beds 1 bath</option>
                   <option value="2 beds 2 bath">2 beds 2 bath</option>
